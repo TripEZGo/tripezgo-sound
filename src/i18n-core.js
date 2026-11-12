@@ -1,4 +1,4 @@
-import * as OpenCC from 'opencc-js';
+import * as OpenCC from 'opencc-js/t2cn';
 import {messages} from './translations.js';
 const simplified=OpenCC.Converter({from:'tw',to:'cn'});
 const rows=new Map(messages.map(row=>[row[0],row]));

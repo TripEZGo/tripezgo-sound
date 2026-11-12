@@ -3,7 +3,7 @@
 export const messages=[
 ['TripEZGo x 旅行 x 音樂','TripEZGo x Travel x Music','TripEZGo x 旅行 x 音楽','TripEZGo x 여행 x 음악'],
 ['← 返回','← Back','← 戻る','← 돌아가기'],['TripEZGo 首頁','TripEZGo home','TripEZGo ホーム','TripEZGo 홈'],
-['每一次播放，','Every play.','再生するたび、','재생할 때마다,'],['都是你的','Your own ','あなただけの','나만의 '],['主場。','main stage.','ステージへ。','무대가 됩니다.'],
+['每一次播放，','Every play.','再生するたび、','재생할 때마다,'],['都是你的','Your ','あなただけの','나만의 '],['主場。','main stage.','ステージへ。','무대가 됩니다.'],
 ['讓那些深夜、通勤與單曲循環，','Late nights, daily commutes, songs on repeat.','深夜も、通勤も、リピートした曲も。','늦은 밤, 출퇴근길, 반복해서 듣던 노래까지.'],['成為一場只屬於你的音樂祭。','Turn your listening history into your own festival.','聴いてきた音楽を、自分だけのフェスに。','나만의 음악 페스티벌로 만나 보세요.'],
 ['獲取播放紀錄','Get listening history','再生履歴を取得','재생 기록 받기'],['匯入播放紀錄','Import history','再生履歴を読み込む','재생 기록 가져오기'],['匯入播放記錄','Import history','再生履歴を読み込む','재생 기록 가져오기'],['探索示範','Explore the demo','デモを見る','데모 둘러보기'],
 ['100% 本機分析 · 播放記錄不離開瀏覽器','100% local analysis · Your history stays in your browser','100% ローカル分析 · 履歴はブラウザの外に送信されません','100% 로컬 분석 · 기록은 브라우저를 벗어나지 않습니다'],
