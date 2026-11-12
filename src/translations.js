@@ -68,4 +68,6 @@ export const messages=[
 ['查看歌曲 {0} 詳細','View track details: {0}','曲の詳細：{0}','곡 상세 보기: {0}'],['查看歌手 {0} 詳細','View artist details: {0}','アーティストの詳細：{0}','아티스트 상세 보기: {0}'],['分享{0}','Share {0}','{0}をシェア','{0} 공유'],['下載{0}','Download {0}','{0}を保存','{0} 다운로드'],['未知歌手','Unknown artist','不明なアーティスト','알 수 없는 아티스트']
  ,['我的歌曲排行','My top tracks','よく聴く曲','내 곡 순위'],['我的最愛歌手','My favorite artists','お気に入りのアーティスト','내가 좋아하는 아티스트'],['我的聆聽探索','My listening discoveries','私の再生履歴探索','내 감상 기록 탐색'],['作者聆聽示範資料','Creator listening demo','作者の再生履歴デモ','제작자의 감상 기록 데모'],['Producted by ZhgChg.Li，前往作者網站','Produced by ZhgChg.Li, visit the creator website','Produced by ZhgChg.Li、作者のサイトへ','Produced by ZhgChg.Li, 제작자 웹사이트 방문']
  ,['↗ 歌手明細','↗ Artist details','↗ アーティスト詳細','↗ 아티스트 상세'],['歌曲：','Track: ','曲：','곡: '],['歌手：','Artist: ','アーティスト：','아티스트: '],['↶ 還原','↶ Restore','↶ 元に戻す','↶ 복원']
+ ,['，',',','。',',']
+ ,['捲動至「','Scroll to “','「','“'],['」選擇「','” and select “','」までスクロールして「','”로 이동하여 “']
 ];

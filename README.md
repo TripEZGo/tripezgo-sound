@@ -19,7 +19,7 @@ npm run build
 npm run preview
 ```
 
-將 `dist/` 部署到任何靜態 HTTP 主機（例如 GitHub Pages、Cloudflare Pages）。資產使用相對路徑，支援子目錄部署。請透過 HTTP/HTTPS 開啟，Web Worker 無法直接從 `file://` 運作。需要支援 ES modules、Web Workers、File.stream() 的現代瀏覽器；無 WebGL 時仍可分析，3D 改用靜態背景。
+將 `dist/` 部署到任何靜態 HTTP 主機（例如 GitHub Pages、Cloudflare Pages）。正式版使用根目錄資產路徑，部署於 sound.tripezgo.com。請透過 HTTP/HTTPS 開啟，Web Worker 無法直接從 `file://` 運作。需要支援 ES modules、Web Workers、File.stream() 的現代瀏覽器；無 WebGL 時仍可分析，3D 改用靜態背景。
 
 ## 功能
 
@@ -48,3 +48,11 @@ ZIP 上限 256 MiB，單個解壓 JSON 上限 64 MiB，總解壓上限 1 GiB。�
 ## 驗證
 
 `npm test` 涵蓋門檻、時區歸組、排除重算、日期區間、首次／末次、ZIP Worker、錯誤格式及作者示範資料。另以提供的實際 ZIP 完成瀏覽器匯入及獨立數值核對；分享圖已驗證兩種尺寸與年份標題。原始匯出 ZIP 不納入建置，只包含作者授權的精簡示範資料。
+
+## 多語系與 SEO
+
+正式網址為 https://sound.tripezgo.com/。支援繁體中文（`/`）、英文（`/en/`）、簡體中文（`/zh-cn/`）、日文（`/ja/`）、韓文（`/ko/`）。初次開啟根目錄依瀏覽器語言選擇，明確語言網址優先；頁尾可即時切換，保留本分頁分析狀態，手動語言選擇只存於 sessionStorage。歌名與歌手等原始資料不翻譯。
+
+`src/locales.js` 管理網址與 SEO metadata，`src/translations.js` 管理介面字串，`src/i18n-core.js` 處理變數與繁簡中文。`scripts/seo.mjs` 於建置前後產生五種語言的靜態首頁、canonical、雙向 hreflang、Open Graph／Twitter Card、WebSite／WebApplication 結構化資料、sitemap.xml、robots.txt 與 404。`index.html` 是由來源模板產生，不要直接修改產生後的 HTML。
+
+正式部署採網站根目錄資產路徑；`.github/workflows/pages.yml` 會建置、測試並發布 `dist/`。`public/CNAME` 指定 sound.tripezgo.com。Cloudflare 僅新增 sound 的 CNAME 指向 tripezgo.github.io，使用 DNS-only；HTTPS 由 GitHub Pages 憑證與強制 HTTPS 提供。後續推送 main 自動部署。

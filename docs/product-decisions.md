@@ -22,3 +22,10 @@
 - 不提供登入或永久保存；個人資料不納入原始碼／建置產物。
 - 下載教學直接展開於「獲取播放紀錄」按鈕下方；展開後同一按鈕改為「匯入播放紀錄」並開啟選檔。聲波中央顯示「拖曳播放紀錄至此」。移除不需自行解壓縮的額外說明，Podcast 一律排除。
 - 歌手排行榜及歌曲明細中的歌手名稱可開啟歌手明細：總時數／次數、首次／末次聆聽、逐年分布、聽過的歌曲清單、日期篩選、排除歌手及圖片分享。歌手依完整名稱精確分組，避免相似名稱混入。
+
+- 五語系：繁中、英文、簡中、日文、韓文。根目錄初次依瀏覽器語言選擇；各語言有獨立靜態網址，頁尾提供完整語言切換。切換保留分析，原始歌名／歌手不翻譯。
+- 正式網址為 https://sound.tripezgo.com/，使用 GitHub repo TripEZGo/tripezgo-sound 和 GitHub Pages Actions 部署。Cloudflare sound CNAME 指向 tripezgo.github.io（DNS-only），啟用 HTTPS。
+- SEO：每語言預先產生完整入口內容與 title／description、canonical、雙向 hreflang、OG／Twitter metadata、JSON-LD，提供 sitemap 和 robots。
+- 頁首、入口與頁尾使用與內容一致的最大寬度；頁尾用 Grid 固定成作者／聲明列及置中語言列。
+- 下載教學第一步只保留「前往 Spotify 隱私設定 ↗，」；第二步合併為「捲動至『下載你的資料』選擇『長期串流播放記錄』。」
+- 主站最後新增主題色「旅行 x 音樂」外部連結，以新視窗前往音樂站；從獨立 worktree 發布，保留原主站工作區既有修改。
