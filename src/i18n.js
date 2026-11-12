@@ -1,3 +1,4 @@
+import {hasUISymbol,renderUISymbols} from './icons.js';
 import {translate} from './i18n-core.js';
 import {locales,resolveLocale,localeFromPath,origin} from './locales.js';
 let preference=null;try{preference=globalThis.sessionStorage?.getItem('tripezgo-locale');}catch{}
@@ -5,10 +6,12 @@ let active=typeof location==='undefined'?'zh-TW':localeFromPath(location.pathnam
 const originals=new WeakMap(),attributes=new WeakMap();let observer=null,queued=false;
 export const getLocale=()=>active;
 export const t=value=>translate(value,active);
-const preserve='.rank-name,.song-result b,.song-result small,.song-detail-top h4,[data-user-text],.language-links,script,style,textarea,code,.creator-badge';
+const preserve='[data-ui-symbols],.rank-name,.song-result b,.song-result small,.song-detail-top h4,[data-user-text],.language-links,script,style,textarea,code,.creator-badge';
 export function localizeDOM(root=document.body){
- const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let node;
- while(node=walker.nextNode()){if(node.parentElement?.closest(preserve))continue;const saved=originals.get(node);const source=saved&&node.data===saved.output?saved.source:node.data;const output=t(source);originals.set(node,{source,output});if(node.data!==output)node.data=output;}
+ for(const el of root.querySelectorAll('[data-ui-symbols]')){const html=renderUISymbols(t(el.dataset.uiSymbols));if(el.innerHTML!==html)el.innerHTML=html;}
+ const symbolNodes=[];const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let node;
+ while(node=walker.nextNode()){if(node.parentElement?.closest(preserve))continue;const saved=originals.get(node);const source=saved&&node.data===saved.output?saved.source:node.data;const output=t(source);originals.set(node,{source,output});if(node.data!==output)node.data=output;if(hasUISymbol(source))symbolNodes.push([node,source,output]);}
+ for(const [node,source,output] of symbolNodes){const span=document.createElement('span');span.dataset.uiSymbols=source;span.innerHTML=renderUISymbols(output);node.replaceWith(span);}
  for(const el of root.querySelectorAll('[aria-label],[placeholder],[title],[alt]')){if(el.closest('.language-links')||el.matches('.rank-name b,.song-detail-top h4'))continue;let saved=attributes.get(el);if(!saved){saved={};attributes.set(el,saved);}for(const name of ['aria-label','placeholder','title','alt']){if(!el.hasAttribute(name))continue;const value=el.getAttribute(name),previous=saved[name],source=previous&&value===previous.output?previous.source:value,output=t(source);saved[name]={source,output};if(output!==value)el.setAttribute(name,output);}}
  document.querySelectorAll('[data-locale]').forEach(link=>{link.setAttribute('aria-current',link.dataset.locale===active?'page':'false');});
 }

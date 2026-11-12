@@ -31,3 +31,38 @@ footer .creator-badge{border:0;border-radius:0;background:none;line-height:0;ove
 header,footer{width:calc(100% - 80px);max-width:1200px;margin-inline:auto}footer{flex-wrap:wrap;align-items:center}footer .creator-badge{flex:0 0 auto}footer .footer-legal{margin-left:auto;max-width:70%}footer .language-links{flex:0 0 100%;width:100%;margin:8px 0 0;justify-content:center}@media(min-width:1200px){.experience .hero{max-width:1280px}.experience .hero-content{width:52%;padding-left:40px}}
 @media(max-width:900px){header,footer{width:calc(100% - 52px)}}@media(max-width:600px){header,footer{width:calc(100% - 40px)}footer{flex-direction:row;align-items:flex-start;gap:20px}footer .footer-legal{flex:1 1 100%;max-width:none;margin:0;text-align:left}footer .language-links{flex:1 1 100%;justify-content:flex-start}.creator-badge{align-self:auto}}
 footer{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px 32px;max-width:1200px;width:calc(100% - 80px);margin-left:auto;margin-right:auto;justify-content:stretch}footer .footer-legal{justify-self:end;max-width:100%;margin:0;text-align:right}footer .language-links{grid-column:1 / -1;justify-self:stretch;justify-content:center;width:100%;margin:0}@media(max-width:900px){footer{width:calc(100% - 52px)}}@media(max-width:600px){footer{width:calc(100% - 40px);grid-template-columns:1fr;gap:20px}footer .footer-legal{justify-self:start;text-align:left}footer .language-links{grid-column:1;justify-content:center}}
+/* Consistent vector icons, independent of iOS emoji fonts. */
+.ui-icon{display:inline-block;width:1em;height:1em;min-width:1em;vertical-align:-.15em;flex-shrink:0;overflow:visible}
+[data-ui-symbols]{letter-spacing:inherit}
+.privacy [data-ui-symbols]{margin:0}.privacy .ui-icon{width:13px;height:13px}
+.primary{align-items:center}.primary>span{flex-shrink:0}
+.rank-arrow,.song-arrow{flex:0 0 auto}
+/* Grid children must be allowed to shrink around long listening metadata. */
+.rankings{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rankings>section,.rank-open,.song-detail-top>div,.song-facts>div,.stats>div{min-width:0}
+.stats strong,.song-facts strong{overflow-wrap:anywhere}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media(max-width:600px){
+ .rankings{grid-template-columns:minmax(0,1fr)}
+ .rankings h4{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+ .rankings h4 span{float:none}
+ .hero-actions{flex-wrap:wrap;gap:12px 20px}
+ .hero-actions .primary{gap:18px;white-space:nowrap;min-height:48px}
+ .hero-actions .text-button{display:inline-flex;align-items:center;gap:12px;white-space:nowrap;min-height:44px}
+ .hero-actions .text-button>span{margin:0}
+ .bar-item{min-width:68px}.bar-chart{gap:12px}
+ .bar-value{font-size:10px}.bar-value em{font-size:9px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .stat-main strong{font-size:clamp(32px,10vw,43px)}
+ .stats small{display:block;margin:8px 0 0}
+ .song-detail-top{flex-direction:column}
+ .song-detail-top button{white-space:normal}
+ .song-detail-top .artist-link{font-size:13px;padding:0;overflow-wrap:anywhere}
+ .song-years>div{display:grid;grid-template-columns:36px minmax(0,1fr);gap:7px 12px}
+ .song-years>div>span:last-child{grid-column:2;min-width:0;text-align:left;overflow-wrap:anywhere}
+ #explore-form label{min-width:0;max-width:100%}
+ #explore-form input,#explore-form select,.import-rules input[type=number],.import-rules textarea{font-size:16px}
+ .ranking-controls{align-items:flex-start}.ranking-controls .segmented{max-width:100%}
+ .trip-ad .ad-copy{min-width:0}.trip-ad .ad-route{overflow-wrap:anywhere;line-height:1.7}
+ footer .footer-legal{overflow-wrap:anywhere}
+}
