@@ -1,17 +1,18 @@
 import {trackKey} from './analytics.js';
-export function exploreRecords(records,{query='',mode='all',from='',to='',tracks=[],artists=[],artistExact=''}={}){
- const start=from?new Date(`${from}T00:00:00`).getTime():-Infinity;
- let end=Infinity;if(to){const date=new Date(`${to}T00:00:00`);date.setDate(date.getDate()+1);end=date.getTime();}
- if(Number.isNaN(start)||Number.isNaN(end)||start>=end)throw new Error('請確認日期格式，開始日期不能晚於結束日期。');
+export function exploreRecords(records,{query='',mode='all',from='',to='',tracks=[],artists=[],artistExact='',aggregation='track'}={}){
+ const start=from?new Date(from.includes('T')?from:`${from}T00:00:00`).getTime():-Infinity;
+ let end=Infinity;if(to){const date=new Date(to.includes('T')?to:`${to}T00:00:00`);if(!to.includes('T'))date.setDate(date.getDate()+1);end=date.getTime();}
+ if(Number.isNaN(start)||Number.isNaN(end)||start>end)throw new Error('請確認日期格式，開始日期不能晚於結束日期。');
  const excludedTracks=new Set(tracks),excludedArtists=new Set(artists),needle=query.trim().toLocaleLowerCase(),result=new Map();
  for(const r of records){const artist=r.master_metadata_album_artist_name||'未知歌手',key=trackKey(r),date=new Date(r.ts),time=date.getTime();
- if((artistExact&&artist!==artistExact)||time<start||time>=end||excludedTracks.has(key)||excludedArtists.has(artist))continue;
+ if((artistExact&&artist!==artistExact)||time<start||(to.includes('T')?time>end:time>=end)||excludedTracks.has(key)||excludedArtists.has(artist))continue;
  const hay=mode==='track'?r.master_metadata_track_name:mode==='artist'?artist:`${r.master_metadata_track_name} ${artist}`;
  if(needle&&!hay.toLocaleLowerCase().includes(needle))continue;
+ if(aggregation==='none'){result.set(result.size,{key,name:r.master_metadata_track_name,artist,count:1,ms:r.ms_played,first:time,last:time});continue;}
  let item=result.get(key);if(!item){item={key,name:r.master_metadata_track_name,artist,count:0,ms:0,first:time,last:time,years:{}};result.set(key,item);}
  item.count++;item.ms+=r.ms_played;item.first=Math.min(item.first,time);item.last=Math.max(item.last,time);const y=date.getFullYear();item.years[y]??={count:0,ms:0};item.years[y].count++;item.years[y].ms+=r.ms_played;
  }
- return [...result.values()].sort((a,b)=>b.count-a.count||b.ms-a.ms||a.name.localeCompare(b.name));
+ return [...result.values()].sort((a,b)=>aggregation==='none'?b.first-a.first:b.count-a.count||b.ms-a.ms||a.name.localeCompare(b.name));
 }
 
 export function summarizeArtist(items,name){

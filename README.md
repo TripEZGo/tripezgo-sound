@@ -56,3 +56,7 @@ ZIP 上限 256 MiB，單個解壓 JSON 上限 64 MiB，總解壓上限 1 GiB。�
 `src/locales.js` 管理網址與 SEO metadata，`src/translations.js` 管理介面字串，`src/i18n-core.js` 處理變數與繁簡中文。`scripts/seo.mjs` 於建置前後產生五種語言的靜態首頁、canonical、雙向 hreflang、Open Graph／Twitter Card、WebSite／WebApplication 結構化資料、sitemap.xml、robots.txt 與 404。`index.html` 是由來源模板產生，不要直接修改產生後的 HTML。
 
 正式部署採網站根目錄資產路徑；`.github/workflows/pages.yml` 會建置、測試並發布 `dist/`。`public/CNAME` 指定 sound.tripezgo.com。Cloudflare 僅新增 sound 的 CNAME 指向 tripezgo.github.io，使用 DNS-only；HTTPS 由 GitHub Pages 憑證與強制 HTTPS 提供。後續推送 main 自動部署。
+
+GA4: production host `sound.tripezgo.com` only, stream **TripEZGo Sound**, measurement ID `G-MPJNFS8ZQE`. Enhanced measurement is disabled in GA4. `src/tracking.js` sends manual pageviews with locale canonical URLs (no query/hash/referrer), and an allowlist of fixed operation event names. It accepts no event data parameter, sends no listening metadata, dates, search input, filenames, or generated images, and disables Google signals / ad personalization. Local development does not load GA4.
+
+History search defaults to individual plays newest first. “Group by Track” retains the song totals/count sort. Local datetime bounds are inclusive; legacy date-only inputs still include the entire end date. Song/artist details and share summaries use grouped totals independent of the result display mode.

@@ -6,7 +6,7 @@ self.onmessage=async({data:payload})=>{
  const file=payload?.type==='import'?payload.file:payload;
  try {
  if(file?.type==='demo'){const analysis=loadDemo(file.buffer,progress=>self.postMessage({type:'progress',...progress}));self.postMessage({type:'done',analysis});return;}
- if(file?.type==='explore'){self.postMessage({type:'explored',items:exploreRecords(file.records,file.options)});return;}
+ if(file?.type==='explore'){self.postMessage({type:'explored',items:exploreRecords(file.records,file.options),summaryItems:file.options.aggregation==='none'?exploreRecords(file.records,{...file.options,aggregation:'track'}):null});return;}
  if(file?.type==='filter'){self.postMessage({type:'filtered',analysis:filterAnalysis(file.source,file.tracks,file.artists)});return;}
  const signature=new Uint8Array(await file.slice(0,4).arrayBuffer());
  if(signature[0]!==0x50||signature[1]!==0x4b||signature[2]!==3||signature[3]!==4)throw new Error('檔案內容不是有效的 ZIP，請勿只修改副檔名。');

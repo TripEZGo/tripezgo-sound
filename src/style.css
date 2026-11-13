@@ -66,3 +66,17 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
  .trip-ad .ad-copy{min-width:0}.trip-ad .ad-route{overflow-wrap:anywhere;line-height:1.7}
  footer .footer-legal{overflow-wrap:anywhere}
 }
+/* Explicit tracks prevent iOS date controls from sizing the flex row by content. */
+#explore-form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:end}
+#explore-form .search-query{grid-column:1 / -1;min-width:0;width:auto}
+#explore-form label,#explore-form label:not(.search-query){min-width:0;width:100%;max-width:100%}
+#explore-form input,#explore-form select{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box}
+#explore-form input[type=datetime-local]{appearance:none;-webkit-appearance:none;min-height:46px;height:46px;text-align:left}
+#explore-form input::-webkit-date-and-time-value{text-align:left;min-width:0}
+@media(max-width:600px){
+ #explore-form{grid-template-columns:minmax(0,1fr);gap:18px}
+ #explore-form .search-query{grid-column:auto}
+ #explore-form input,#explore-form select{height:48px}
+ .song-result>span:nth-child(2){max-width:46%;white-space:normal}
+ .song-result>span:nth-child(2) strong{display:block;line-height:1.6;overflow-wrap:anywhere}
+}
